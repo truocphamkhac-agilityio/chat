@@ -1,0 +1,23 @@
+{
+  "preset": "google",
+  "fileExtensions": [ ".js", "jscs" ],
+
+  "requireParenthesesAroundIIFE": true,
+  "requireCamelCaseOrUpperCaseIdentifiers": false,
+
+  "maximumLineLength": 120,
+  "validateLineBreaks": "LF",
+  "validateIndentation": 2,
+
+  "disallowKeywords": ["with"],
+  "disallowSpacesInsideObjectBrackets": null,
+  "disallowImplicitTypeConversion": ["string"],
+
+  "disallowMultipleVarDecl": false,
+
+  "safeContextKeyword": "self",
+
+  "excludeFiles": [
+    "test/data/**"
+  ]
+}
