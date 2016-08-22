@@ -6,6 +6,11 @@ const app = express();
 const server = require('http').Server(app);
 const io = require('socket.io')(server);
 const logger = require('../utils/logger')('server');
+const DatabaseManager = require('../platform/db');
+const databaseManager = new DatabaseManager();
+
+// init database
+databaseManager.init();
 
 // configs
 app.use(express.static(path.join(__dirname, '../public')));
@@ -18,6 +23,19 @@ app.get('/', (req, res) => {
 /**
  * USER API
  */
+app.get('/api/users', (req,res) => {
+    databaseManager.db.dbUser.getAll((error, users) => {
+        res.send(users);
+    });
+});
+
+app.get('/api/users/create', (req, res) => {
+    const data = req.query || {};
+
+    databaseManager.db.dbUser.save(data, (error, user) => {
+        res.send(user);
+    });
+});
 
 // socket io connection
 io.on('connection', socket => {
