@@ -1,0 +1,23 @@
+version: '2'
+
+services:
+  backend:
+    container_name: backend
+    build:
+      context: ../../backend
+      dockerfile: Dockerfile
+    command: npm run dev
+    env_file: ../.env_dev
+    ports:
+      - 8020:8020
+    links:
+      - mongo
+
+  mongo:
+    container_name: mongo
+    image: mongo
+    ports:
+      - 27017:27017/tcp
+    command: mongod --dbpath=/data/db
+    volumes:
+      - ../../mongo:/data/db/
