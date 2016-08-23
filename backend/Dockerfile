@@ -1,4 +1,4 @@
-FROM node:4
+FROM mhart/alpine-node:4.2.1
 
 # Create app directory
 RUN mkdir -p /home/chat
